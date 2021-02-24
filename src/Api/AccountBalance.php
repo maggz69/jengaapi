@@ -8,7 +8,6 @@ use maggz69\JengaApi\Network\NetworkPipeline;
 
 class AccountBalance implements SignParametersInterface
 {
-
     private const account_balance_endpoint = '/account/v2/accounts/balances/?/?';
     private string $countryCode;
     private string $accountId;
@@ -22,7 +21,7 @@ class AccountBalance implements SignParametersInterface
     public function __construct(string $countryCode = null, string $accountId = null)
     {
         $this->countryCode = isset($countryCode) ? $countryCode : config('jenga.account.country');
-        $this->accountId = isset ($accountId) ? $accountId : config('jenga.account.account_id');
+        $this->accountId = isset($accountId) ? $accountId : config('jenga.account.account_id');
     }
 
     /**
@@ -42,7 +41,6 @@ class AccountBalance implements SignParametersInterface
         return $result;
     }
 
-
     /**
      * Get a single string that contains the parameters that need to be signed.
      *
@@ -50,6 +48,6 @@ class AccountBalance implements SignParametersInterface
      */
     public function getSingleParameterString(): string
     {
-        return $this->countryCode . $this->accountId;
+        return $this->countryCode.$this->accountId;
     }
 }

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace maggz69\JengaApiCommands;
-
 
 use maggz69\JengaApi\Network\NetworkPipeline;
 
@@ -16,11 +14,10 @@ class SignStringCommand extends \Illuminate\Console\Command
     {
         $string = $this->argument('string');
 
-        $this->output->text("Signing the following text:" . $string);
+        $this->output->text('Signing the following text:'.$string);
 
         $signedString = NetworkPipeline::signString($string);
 
-        $this->output->text("Your signed string is : " . $signedString);
+        $this->output->text('Your signed string is : '.$signedString);
     }
-
 }

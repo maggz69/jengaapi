@@ -2,7 +2,6 @@
 
 namespace maggz69\JengaApi\Auth;
 
-
 use maggz69\JengaApi\Exceptions\LoginDetailsIncorrect;
 use maggz69\JengaApi\Network\NetworkPipeline;
 
@@ -14,8 +13,10 @@ class Authentication
      * Get the bearer token for authentication.
      *
      * Get the bearer token from jengahq api gateway using the login details provided
-     * @return string
+     *
      * @throws LoginDetailsIncorrect
+     *
+     * @return string
      */
     public static function getToken(): string
     {
@@ -31,9 +32,8 @@ class Authentication
 
         $authData = [
             'username' => $username,
-            'password' => $password
+            'password' => $password,
         ];
-
 
         $networkPipe = new NetworkPipeline();
         $networkPipe->setBasicAuthorizationToken();
@@ -45,7 +45,6 @@ class Authentication
         }
 
         $token = $result['body']['access_token'];
-
 
         return $token;
     }

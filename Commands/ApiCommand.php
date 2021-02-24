@@ -1,8 +1,6 @@
 <?php
 
-
 namespace maggz69\JengaApiCommands;
-
 
 use Illuminate\Console\Command;
 use maggz69\JengaApi\Api\AccountBalance;
@@ -38,17 +36,20 @@ class ApiCommand extends Command
         switch ($this->argument('api')) {
             case 'ab':
                 $this->longText = 'Account Balance';
-                return (new AccountBalance)->checkBalance();
+
+                return (new AccountBalance())->checkBalance();
             case 'ams':
                 $this->longText = 'Account Mini Statement';
-                return (new AccountMiniStatement)->getMiniStatement();
+
+                return (new AccountMiniStatement())->getMiniStatement();
             case 'ocab':
                 $this->longText = 'Account Mini Statement';
+
                 return (new OpeningClosingAccountBalance(null, null, $this->option('params')[0]))->getBalance();
             default:
                 $this->longText = 'No command found';
+
                 return null;
         }
     }
-
 }

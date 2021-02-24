@@ -21,6 +21,7 @@ class NetworkPipeline
 
     /**
      * NetworkPipeline constructor.
+     *
      * @param string|null $stringToSign
      */
     public function __construct(string $stringToSign = null)
@@ -52,6 +53,7 @@ class NetworkPipeline
      * Add a header to the request.
      *
      * This will add a header to the client that's being used to parse the request.
+     *
      * @param array $headers
      */
     public function addHeader(array $headers): void
@@ -64,19 +66,20 @@ class NetworkPipeline
      *
      * This makes use of Guzzles Get request and returns a json encoded response.
      *
-     * @param string $url
+     * @param string     $url
      * @param array|null $body
-     * @return array
+     *
      * @throws GuzzleException
+     *
+     * @return array
      */
     public function get(string $url, array $body = null)
     {
         $client = $this->client;
 
-
         $result = $client->get($url, [
             'headers' => $this->getHeaders(),
-            'query' => $body
+            'query'   => $body,
         ]);
 
         return NetworkResponse::format($result);
@@ -104,18 +107,19 @@ class NetworkPipeline
      * This makes use of Guzzles post request and returns a json encoded response.
      *
      * @param string $url
-     * @param array $body
-     * @return array
+     * @param array  $body
+     *
      * @throws GuzzleException
+     *
+     * @return array
      */
-
     public function post(string $url, array $body)
     {
         $client = $this->client;
 
         $result = $client->post($url, [
-            'headers' => $this->getHeaders(),
-            'form_params' => $body
+            'headers'     => $this->getHeaders(),
+            'form_params' => $body,
         ]);
 
         return NetworkResponse::format($result);
@@ -123,12 +127,11 @@ class NetworkPipeline
 
     public function setBasicAuthorizationToken()
     {
-        $this->headers['Authorization'] = 'Basic ' . config('jenga.header');
+        $this->headers['Authorization'] = 'Basic '.config('jenga.header');
     }
 
     public function setBearerAuthorizationToken()
     {
-        $this->headers['Authorization'] = 'Bearer ' . Authentication::getToken();
+        $this->headers['Authorization'] = 'Bearer '.Authentication::getToken();
     }
-
 }
