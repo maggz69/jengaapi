@@ -1,5 +1,7 @@
 ## Jenga API Package for Laravel and PHP
 
+[![StyleCI](https://github.styleci.io/repos/341956563/shield?branch=master)](https://github.styleci.io/repos/341956563?branch=master)
+
 ### Features Available
 
 1. API
