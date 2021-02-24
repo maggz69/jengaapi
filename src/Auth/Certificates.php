@@ -1,26 +1,21 @@
 <?php
 
-
 namespace maggz69\JengaApi\Auth;
 
 use maggz69\JengaApi\Exceptions\MissingPrivateKey;
 
 class Certificates
 {
+    const LOCAL_PRIVATE_KEY_PATH = 'phpseclib/local_private_key.pem';
 
-    /**
-     *
-     */
-    const LOCAL_PRIVATE_KEY_PATH = "phpseclib/local_private_key.pem";
-    /**
-     *
-     */
-    const LOCAL_PUBLIC_KEY_PATH = "phpseclib/local_public_key.pem";
+    const LOCAL_PUBLIC_KEY_PATH = 'phpseclib/local_public_key.pem';
 
     /**
      * Read the private key file information.
-     * @return string
+     *
      * @throws MissingPrivateKey
+     *
+     * @return string
      */
     public static function readPrivateKey(): string
     {
@@ -28,7 +23,7 @@ class Certificates
             if (\Storage::exists(self::LOCAL_PRIVATE_KEY_PATH)) {
                 return \Storage::get(self::LOCAL_PRIVATE_KEY_PATH);
             } else {
-                if (isset(self::generateCertificate()['local_private_key'])){
+                if (isset(self::generateCertificate()['local_private_key'])) {
                     return \Storage::get(self::LOCAL_PRIVATE_KEY_PATH);
                 }
             }
@@ -48,7 +43,7 @@ class Certificates
      */
     public static function generateCertificate(): array
     {
-        $private = (new \phpseclib\Crypt\RSA)->createKey();
+        $private = (new \phpseclib\Crypt\RSA())->createKey();
 
         $certificateWhole = ['private_key' => $private['privatekey'], 'public_key' => $private['publickey']];
 
@@ -62,8 +57,10 @@ class Certificates
      * Get the private key path.
      *
      * Read the path to the private signing key and return it.
-     * @return string
+     *
      * @throws MissingPrivateKey
+     *
+     * @return string
      */
     public static function readPrivateKeyPath(): string
     {
@@ -71,7 +68,7 @@ class Certificates
             if (\Storage::exists(self::LOCAL_PRIVATE_KEY_PATH)) {
                 return \Storage::path(self::LOCAL_PRIVATE_KEY_PATH);
             } else {
-                if (isset(self::generateCertificate()['local_private_key'])){
+                if (isset(self::generateCertificate()['local_private_key'])) {
                     return \Storage::path(self::LOCAL_PRIVATE_KEY_PATH);
                 }
             }
@@ -83,5 +80,4 @@ class Certificates
             }
         }
     }
-
 }

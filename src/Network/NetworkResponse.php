@@ -1,22 +1,19 @@
 <?php
 
-
 namespace maggz69\JengaApi\Network;
-
 
 use Psr\Http\Message\ResponseInterface;
 
 /**
- * Class NetworkResponse
- * @package maggz69\JengaApi\Network
+ * Class NetworkResponse.
  */
 class NetworkResponse
 {
-
-
     /**
      * NetworkResponse constructor.
+     *
      * @param ResponseInterface $response
+     *
      * @return array
      */
     public function __construct(ResponseInterface $response)
@@ -26,6 +23,7 @@ class NetworkResponse
 
     /**
      * @param ResponseInterface $response
+     *
      * @return array
      */
     public static function format(ResponseInterface $response): array
@@ -34,9 +32,8 @@ class NetworkResponse
 
         $res['successful'] = ($response->getStatusCode() === 200 || $response->getStatusCode() === 201);
         $res['response_code'] = $response->getStatusCode();
-        $res['body'] = json_decode((string)$response->getBody(), true);
+        $res['body'] = json_decode((string) $response->getBody(), true);
 
         return $res;
     }
-
 }
