@@ -1,0 +1,34 @@
+{
+  "name": "maggz69/jengaapi",
+  "description": "A package to make use of the jenga api gateway in php and specifically Laravel",
+  "type": "library",
+  "require": {
+    "php": "^7.4|8.0",
+    "guzzlehttp/guzzle": "^7.0",
+    "laravel/framework": "^8",
+    "phpseclib/phpseclib": "^2.0",
+    "ext-openssl": "*"
+  },
+  "license": "ISC",
+  "authors": [
+    {
+      "name": "Pius Gumo",
+      "email": "swagzmania@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
+      "maggz69\\JengaApi\\": "src",
+      "maggz69\\JengaApiProviders\\": "Providers",
+      "maggz69\\JengaApiCommands\\": "Commands"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "maggz69\\JengaApiProviders\\JengaApiServiceProvider"
+      ]
+    }
+  }
+}
